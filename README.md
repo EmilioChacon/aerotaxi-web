@@ -17,4 +17,4 @@ A prototype web app for booking short-distance flights between Spanish cities us
 2. Install dependencies (e.g., with npm or pip)
 3. Start the dev server
 
-4. ℹ️ Project in early stages - Under construction 🚧
+ℹ️ Project in early stages - Under construction 🚧
