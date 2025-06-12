@@ -29,3 +29,24 @@ def get_routes():
         {"route_id": 14, "from": "Bilbao", "to": "Madrid", "duration": "1h 30m"},
         {"route_id": 15, "from": "Madrid", "to": "Valencia", "duration": "1h 20m"}
     ]
+
+from pydantic import BaseModel
+
+class Booking(BaseModel):
+    route_id: int
+    from_: str
+    to: str
+    passenger: str
+
+@app.post('/book')
+def book_flight(booking: Booking):
+    return {
+        "status": "success",
+        "message": "Aerotaxi booked successfully!",
+        "booking_details": {
+            "route_id": booking.route_id,
+            "from": booking.from_,
+            "to": booking.to,
+            "passenger": booking.passenger
+        }
+    }
