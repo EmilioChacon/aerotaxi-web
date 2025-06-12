@@ -1,15 +1,21 @@
+# FastAPI application for Aerotaxi service
+# This application provides endpoints for booking flights and retrieving routes.
 from fastapi import FastAPI
+from pydantic import BaseModel #Import BaseModel for data validation 
 
-app = FastAPI()
+app = FastAPI() # Initialize FastAPI application
 
-@app.get('/')
+# Root endpoint
+@app.get('/') 
 def root():
     return {'message': 'Hello, Aerotaxi!'}
 
+# Endpoint to get booking information
 @app.get('/booking')
 def get_booking():
     return {"message": "Booking endpoint - coming soon!."}
 
+# Endpoint to get available routes
 @app.get('/routes')
 def get_routes():
     return [
@@ -30,14 +36,14 @@ def get_routes():
         {"route_id": 15, "from": "Madrid", "to": "Valencia", "duration": "1h 20m"}
     ]
 
-from pydantic import BaseModel
-
+# Define the Booking model for flight booking
 class Booking(BaseModel):
     route_id: int
     from_: str
     to: str
     passenger: str
 
+# Endpoint to book a flight
 @app.post('/book')
 def book_flight(booking: Booking):
     return {
